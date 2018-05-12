@@ -1,0 +1,132 @@
+\documentclass[12pt]{jsarticle}  
+\usepackage[dvipdfm,left=1.5cm,right=1.5cm,top=2cm]{geometry}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{bm}
+\usepackage{comment}
+\usepackage{framed}
+\usepackage{tabularx}
+
+\setlength{\topmargin}{-1in}
+\addtolength{\topmargin}{5mm}
+\setlength{\headheight}{5mm}
+\setlength{\headsep}{0mm}
+\setlength{\textheight}{\paperheight}
+\addtolength{\textheight}{-25mm}
+\setlength{\footskip}{5mm}
+
+\newcommand{\frontpage}[3]{%
+\begin{center}
+　\\
+\vspace{15em}{\LARGE{}レポート課題}\\
+　\\
+{\Huge\bf#1}\\
+\vspace{30em}
+{\LARGE\today}\\
+\vspace{2em}
+{\LARGE#2　#3}
+\end{center}
+\thispagestyle{empty}
+\clearpage
+\setcounter{page}{1}
+}
+
+\newcommand{\result}[5]{
+\begin{minipage}{0.05\hsize}
+(#1)
+\end{minipage}
+\begin{minipage}{0.22\hsize}
+\includegraphics[width=\linewidth]{#2}j
+\end{minipage}
+\begin{minipage}{0.22\hsize}
+\includegraphics[width=\linewidth]{#3}
+\end{minipage}
+\begin{minipage}{0.22\hsize}
+\includegraphics[width=\linewidth]{#4}
+\end{minipage}
+\begin{minipage}{0.22\hsize}
+\includegraphics[width=\linewidth]{#5}
+\end{minipage}
+\\
+}
+
+\begin{document}
+
+\frontpage
+{自己符号化器の特性評価}
+{S152114}
+{宮地雄也}
+
+\section{実験目的}
+
+ニューラルネットワークによる生成モデルの基礎となる自己符号化器の原理および特性について理解する．
+
+\section{実験原理}
+
+\subsection{自己符号化器（Autoencoder，AE）}
+
+テキストの内容をまとめる．
+以下の疑問に対する答えが含まれているようにすること．
+\begin{itemize}
+\item 自己符号化器の構成要素とそれぞれの役割
+\item 主な応用先
+\item 学習を成功させるための条件
+\item 主成分分析との関連
+\end{itemize}
+
+\subsection{雑音除去自己符号化器（Denoising Autoencoder，DAE）}
+
+テキストの内容をまとめる．
+式(14.8)と(14.9)を比較しながら，通常の自己符号化器との違いを説明する．
+
+
+\section{実験方法}
+
+実験データとしてCIFAR10データセットを用い，以下の目的が達成されるような実験方法を検討し，その方法を説明せよ．
+
+\begin{itemize}
+\item 学習後の自己符号化器が入力画像を正しく生成できることを確認する．
+\item ネットワーク構成の違いによる生成画像の品質の差を確認する．畳み込み層を用いる場合とそうでない場合を比較せよ．
+\item 学習後の符号化器が入力画像の特徴を把握できていることを確認する．
+学習後の符号化器のパラメータを画像認識ネットワークの前段の初期値にした場合と，そうしない場合の正解率を比較せよ．
+\item 雑音除去自己符号化器が入力画像の雑音を除去できることを確認する．
+\end{itemize}
+
+以下に注意すること．
+\begin{itemize}
+\item 実験条件ごとに番号をつけ，確認したい項目および実験結果の再現に必要な条件（ネットワーク構成，目的関数，パラメータの初期化方法，パラメータの更新方法，学習回数，学習およびテストデータ数，入力に付加する雑音の比率など）を明記すること．
+\item テストデータで学習しないようにすること．
+\end{itemize}
+
+
+\section{実験結果}
+
+自己符号化器の平均二乗誤差の推移を表すグラフを示せ．
+また，学習データおよびテストデータの先頭100個について，生成画像を示せ．例を図\ref{fig:ae}に示す．
+
+画像認識ネットワークの正解率および平均二乗誤差の推移を表すグラフを示せ．
+学習データおよびテストデータはともに1000個以上用いること．
+
+学習データおよびテストデータの先頭100個について，学習済雑音除去自己符号化器の入力画像と出力画像を示せ．
+
+すべて，図と実験条件との対応がとれるようにすること．画像生成時の学習回数および平均二乗誤差をあわせて示すこと．
+折れ線グラフはpythonで作成すること．
+
+\section{考察}
+
+実験結果を比較しながら，自己符号化器の構成や各種パラメータの値と生成画像の品質の関係について分析せよ．
+学習回数と平均二乗誤差の関係，平均二乗誤差と生成画像の品質の関係などをもとに，学習の進行過程の一般的な傾向を考察せよ．
+これらの議論にもとづき，高い復元精度を有する自己符号化器の作成ノウハウをまとめよ．
+
+また，事前学習および雑音除去への応用について考察せよ．
+
+\clearpage
+
+\begin{figure}[tb]
+\begin{center}
+\includegraphics[width=\linewidth]{ae.png}
+\caption{学習データの復号結果（実験条件との対応がとれるようにすること）: 学習回数=200回．平均二乗誤差=7.1715} \label{fig:ae}
+\end{center}
+\end{figure}
+
+\end{document}

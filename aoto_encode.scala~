@@ -121,7 +121,7 @@ object AE{
     val tn   = args(4).toInt // テストデータ数  ★
     
     val state = ln+"_"+dn+"_"+tn
-    var line = "mode:"+mode+mode2+"-"+"ln:"+ln+"-"+"dn:"+dn+"-"+"tn:"+tn
+    var line = "mode:"+mode+mode2+"/"+"ln:"+ln+"/"+"dn:"+dn+"/"+"tn:"+tn
     var Encoder = layer_util.encoder_choice(mode)
     var Decoder = layer_util.decoder_choice(mode2)
     println(line)

@@ -4,6 +4,94 @@ import java.io.{FileOutputStream=>FileStream,OutputStreamWriter=>StreamWriter}
 import breeze.linalg._
 import math._
 
+object layer_util{
+  def decoder_choice(mode2:String)={
+    var Decoder = mode2 match{
+      case "A" =>{
+        val a = new Affine(30,32*32*3)
+        List(a)
+      }
+      case "RA" =>{
+        val a = new Affine(30,512)
+        val b = new Affine(512,32*32*3)
+        List(a)
+      }
+    }
+    Decoder
+  }
+
+
+  def encoder_choice(mode:String)={
+    var Encoder = mode match{
+      case "AR" =>{
+        val a = new Affine(32*32*3,30)
+        val b = new ReLU()
+        List(a,b)
+      }
+      case "ccrpccrpa" => {
+        val a = new Convolution(3,32,32,10,4)
+        val b =  new Convolution(10,29,29,10,4)
+        val c = new ReLU()
+        val d = new Pooling(2,10,26,26)
+        val e = new Convolution(10,13,13,10,3)
+        val f = new Convolution(10,11,11,10,2)
+        val g = new ReLU()
+        val h = new Pooling(2,10,10,10)
+        val i = new Affine(10*5*5,30)
+        List(a,b,c,d,e,f,g,h,i)
+      }
+      case "crpcrpa" => {
+        val a = new Convolution(3,32,32,10,5)
+        val b = new ReLU()
+        val c = new Pooling(2,10,28,28)
+        val d = new Convolution(10,14,14,10,5)
+        val e = new ReLU()
+        val f = new Pooling(2,10,10,10)
+        val g = new Affine(250,30)
+        List(a,b,c,d,e,f,g)
+      }
+    }
+
+
+
+    Encoder
+  }
+
+
+
+
+
+  def forwards(layers:List[Layer],x:Array[Double])={
+    var temp = x
+    for(lay <- layers){
+      temp =lay.forward(temp)
+    }
+    temp
+  }
+
+  def backwards(layers:List[Layer],x:Array[Double])={
+    var d = x
+    for(lay <- layers.reverse){
+      d = lay.backward(d)
+    }
+    d
+  }
+
+  def updates(layers:List[Layer])={
+    for(lay <- layers){
+      lay.update()
+    }
+  }
+
+  def resets(layers:List[Layer]){
+    for(lay <- layers){
+      lay.reset()
+    }
+  }
+
+
+}
+
 
 class ReLU() extends Layer {
   var ys = List[Array[Double]]()
@@ -30,7 +118,7 @@ class ReLU() extends Layer {
 
 class Affine(val xn:Int, val yn:Int) extends Layer{
   val rand = new scala.util.Random(0)
-  var W = DenseMatrix.zeros[Double](yn,xn)//.map(_ => rand.nextGaussian*0.01)
+  var W = DenseMatrix.zeros[Double](yn,xn).map(_ => rand.nextGaussian*0.01)
   for(i <- 0 until yn;j <- 0 until xn){
     W(i,j)=rand.nextGaussian*0.01
   }
@@ -280,5 +368,74 @@ object Image {
     }
     javax.imageio.ImageIO.write(im, "png", new java.io.File(fn))
   }
+
+
+  var make_imagelist= List[String]()
+  def makeimg(n:Int,fn:String,f:String)={
+
+    for(i <- 0 until 10){
+      sys.process.Process("convert +append "
+        +fn+(i*10).toString+  ".png "
+        +fn+(i*10+1).toString+".png "
+        +fn+(i*10+2).toString+".png "
+        +fn+(i*10+3).toString+".png "
+        +fn+(i*10+4).toString+".png "
+        +fn+(i*10+5).toString+".png "
+        +fn+(i*10+6).toString+".png "
+        +fn+(i*10+7).toString+".png "
+        +fn+(i*10+8).toString+".png "
+        +fn+(i*10+9).toString+".png "
+        +fn+"file"+i.toString+".png" ).run
+      Thread.sleep(300)
+      make_imagelist ::= fn+"file"+i.toString+".png"
+
+    }
+
+    sys.process.Process("convert -append "
+      +fn+"file0.png "
+      +fn+"file1.png "
+      +fn+"file2.png "
+      +fn+"file3.png "
+      +fn+"file4.png "
+      +fn+"file5.png "
+      +fn+"file6.png "
+      +fn+"file7.png "
+      +fn+"file8.png "
+      +fn+"file9.png "
+      +fn+f+"cifer"+n.toString+".jpg"
+    ).run
+  }
+
+
+  def remove_image(){
+    Thread.sleep(300)
+    for(i <- make_imagelist){
+      if(i.contains(".png") ){
+        sys.process.Process("rm "+i).run
+      }
+    }
+    make_imagelist = List()
+  }
+  def to3DArrayOfColor(image:Array[Double],h:Int,w:Int) = {
+    val input = image.map(_*256)
+    var output = List[Array[Array[Double]]]()
+    for(i <- 0 until h) {
+      var row = List[Array[Double]]()
+      for(j <- 0 until w) {
+        val red = input(i*w+j)
+        val green = input(i*w+j+h*w)
+        val blue = input(i*w+j+h*w*2)
+        row ::= Array(red,green,blue)
+      }
+      output ::= row.reverse.toArray
+    }
+    output.reverse.toArray.map(_.map(_.map(_.toInt)))
+  }
+
+  def imageWriter(fn:String,im:Array[Array[Array[Int]]])={
+    make_imagelist ::= fn
+    write(fn,im)
+  }
+
 }
 
