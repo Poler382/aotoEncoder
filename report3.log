@@ -1,0 +1,383 @@
+This is e-pTeX, Version 3.14159265-p3.7.1-161114-2.6 (sjis) (TeX Live 2017/W32TeX) (preloaded format=platex 2018.5.14)  18 MAY 2018 01:11
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**./report3.tex
+(./report3.tex
+pLaTeX2e <2017/10/28>+4 (based on LaTeX2e <2017-04-15>)
+Babel <3.17> and hyphenation patterns for 84 language(s) loaded.
+(c:/texlive/2017/texmf-dist/tex/platex/jsclasses/jsarticle.cls
+Document Class: jsarticle 2017/10/04 jsclasses (okumura, texjporg)
+\jsc@mpt=\dimen118
+\jsc@mmm=\dimen119
+\jsc@smallskipamount=\skip41
+LaTeX Info: Redefining \rmfamily on input line 471.
+LaTeX Info: Redefining \sffamily on input line 474.
+LaTeX Info: Redefining \ttfamily on input line 477.
+LaTeX Info: Redefining \textmc on input line 481.
+LaTeX Info: Redefining \textgt on input line 483.
+\symmincho=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `mincho' in version `bold'
+(Font)                  JY1/mc/m/n --> JY1/gt/m/n on input line 545.
+LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 736.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 736.
+\fullwidth=\dimen120
+LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
+(Font)              scaled to size 7.68799pt on input line 889.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 7.68799pt on input line 889.
+\c@part=\count82
+\c@section=\count83
+\c@subsection=\count84
+\c@subsubsection=\count85
+\c@paragraph=\count86
+\c@subparagraph=\count87
+\@abstractbox=\box42
+\c@figure=\count88
+\c@table=\count89
+\abovecaptionskip=\skip42
+\belowcaptionskip=\skip43
+\jsc@tocl@width=\dimen121
+\@lnumwidth=\dimen122
+\bibindent=\dimen123
+(c:/texlive/2017/texmf-dist/tex/platex/jsclasses/jslogo.sty
+Package: jslogo 2017/02/24 okumura, texjporg
+LaTeX Info: Redefining \TeX on input line 94.
+LaTeX Info: Redefining \LaTeX on input line 147.
+LaTeX Info: Redefining \LaTeXe on input line 200.
+)
+\heisei=\count90
+) (c:/texlive/2017/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+ (c:/texlive/2017/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+) (c:/texlive/2017/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+) (c:/texlive/2017/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+) (c:/texlive/2017/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count91
+\Gm@cntv=\count92
+\c@Gm@tempcnt=\count93
+\Gm@bindingoffset=\dimen124
+\Gm@wd@mp=\dimen125
+\Gm@odd@mp=\dimen126
+\Gm@even@mp=\dimen127
+\Gm@layoutwidth=\dimen128
+\Gm@layoutheight=\dimen129
+\Gm@layouthoffset=\dimen130
+\Gm@layoutvoffset=\dimen131
+\Gm@dimlist=\toks16
+) (c:/texlive/2017/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+ (c:/texlive/2017/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+ (c:/texlive/2017/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (c:/texlive/2017/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: dvipdfmx.def on input line 99.
+ (c:/texlive/2017/texmf-dist/tex/latex/graphics-def/dvipdfmx.def
+File: dvipdfmx.def 2017/06/24 v5.0g Graphics/color driver for dvipdfmx
+))
+\Gin@req@height=\dimen132
+\Gin@req@width=\dimen133
+) (c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2017/09/02 v2.17a AMS math features
+\@mathmargin=\skip44
+
+For additional information on amsmath, use the `?' option.
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+ (c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks17
+\ex@=\dimen134
+)) (c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen135
+) (c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count94
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count95
+\leftroot@=\count96
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count97
+\DOTSCASE@=\count98
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box43
+\strutbox@=\box44
+\big@size=\dimen136
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count99
+\c@MaxMatrixCols=\count100
+\dotsspace@=\muskip10
+\c@parentequation=\count101
+\dspbrk@lvl=\count102
+\tag@help=\toks18
+\row@=\count103
+\column@=\count104
+\maxfields@=\count105
+\andhelp@=\toks19
+\eqnshift@=\dimen137
+\alignsep@=\dimen138
+\tagshift@=\dimen139
+\tagwidth@=\dimen140
+\totwidth@=\dimen141
+\lineht@=\dimen142
+\@envbody=\toks20
+\multlinegap=\skip45
+\multlinetaggap=\skip46
+\mathdisplay@stack=\toks21
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
+) (c:/texlive/2017/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+ (c:/texlive/2017/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup5
+\symAMSb=\mathgroup6
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (c:/texlive/2017/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup7
+\symboldletters=\mathgroup8
+\symboldsymbols=\mathgroup9
+\symboldmincho=\mathgroup10
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
+LaTeX Info: Redefining \bm on input line 207.
+) (c:/texlive/2017/texmf-dist/tex/latex/comment/comment.sty
+\CommentStream=\write3
+ Excluding comment 'comment') (c:/texlive/2017/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip47
+\fb@frw=\dimen143
+\fb@frh=\dimen144
+\FrameRule=\dimen145
+\FrameSep=\dimen146
+) (c:/texlive/2017/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2016/02/03 v2.11 `tabularx' package (DPC)
+ (c:/texlive/2017/texmf-dist/tex/latex/tools/array.sty
+Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
+\col@sep=\dimen147
+\extrarowheight=\dimen148
+\NC@list=\toks22
+\extratabsurround=\skip48
+\backup@length=\skip49
+)
+\TX@col@width=\dimen149
+\TX@old@table=\dimen150
+\TX@old@col=\dimen151
+\TX@target=\dimen152
+\TX@delta=\dimen153
+\TX@cols=\count106
+\TX@ftn=\toks23
+) (c:/texlive/2017/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count107
+\float@exts=\toks24
+\float@box=\box45
+\@float@everytoks=\toks25
+\@floatcapt=\box46
+) (c:/texlive/2017/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+ (c:/texlive/2017/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+ (c:/texlive/2017/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen154
+\captionmargin@=\dimen155
+\captionwidth=\dimen156
+\caption@tempdima=\dimen157
+\caption@indent=\dimen158
+\caption@parindent=\dimen159
+\caption@hangindent=\dimen160
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+)
+
+Package caption Warning: Unsupported document class (or package) detected,
+(caption)                usage of the caption package is not recommended.
+See the caption package documentation for explanation.
+
+Package caption Info: \@makecaption = \long macro:#1#2->{\small \advance \leftskip .0628\linewidth \advance \rightskip .0628\linewidth \vskip \abovecaptionskip \sbox \@tempboxa {#1\hskip 1zw\relax #2}\ifdim \wd \@tempboxa <\hsize \centering \fi #1\hskip 1zw\relax #2\par \vskip \belowcaptionskip }.
+\c@ContinuedFloat=\count108
+Package caption Info: float package is loaded.
+)
+\c@subfigure=\count109
+\c@subtable=\count110
+) (c:/texlive/2017/texmf-dist/tex/latex/tools/afterpage.sty
+Package: afterpage 2014/10/28 v1.08 After-Page Package (DPC)
+\AP@output=\toks26
+\AP@partial=\box47
+\AP@footins=\box48
+) (./report3.aux)
+\openout1 = `report3.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+
+*geometry* detected driver: dvipdfm
+*geometry* verbose mode - [ preamble ] result:
+* driver: dvipdfm
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(42.67912pt, 412.56194pt, 42.67912pt)
+* v-part:(T,H,B)=(56.9055pt, 562.7909pt, 84.505pt)
+* \paperwidth=597.49146pt
+* \paperheight=845.03174pt
+* \textwidth=412.56194pt
+* \textheight=633.06952pt
+* \oddsidemargin=-29.59087pt
+* \evensidemargin=-29.59087pt
+* \topmargin=-58.04362pt
+* \headheight=14.22636pt
+* \headsep=0.0pt
+* \topskip=12.76073pt
+* \footskip=14.22636pt
+* \marginparwidth=9.24687pt
+* \marginparsep=18.49374pt
+* \columnsep=18.49374pt
+* \skip\footins=16.0pt plus 5.0pt minus 2.0pt
+* \hoffset=12.0588pt
+* \voffset=12.0588pt
+* \mag=1200
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
+(Font)              scaled to size 16.60605pt on input line 61.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 16.60605pt on input line 61.
+LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
+(Font)              scaled to size 23.90964pt on input line 61.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 23.90964pt on input line 61.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <24.88> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 61.
+LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
+(Font)              scaled to size 23.90964pt on input line 61.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <24.88> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 61.
+LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
+(Font)              scaled to size 23.90964pt on input line 61.
+[1
+
+]
+LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
+(Font)              scaled to size 13.83836pt on input line 63.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 13.83836pt on input line 63.
+LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
+(Font)              scaled to size 13.83836pt on input line 63.
+LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
+(Font)              scaled to size 13.83836pt on input line 63.
+LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
+(Font)              scaled to size 11.53198pt on input line 69.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 11.53198pt on input line 69.
+LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
+(Font)              scaled to size 11.53198pt on input line 69.
+LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
+(Font)              scaled to size 11.53198pt on input line 69.
+LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 74.
+LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 74.
+File: AE_image.png Graphic file (type bmp)
+<AE_image.png>
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 6.72699pt on input line 103.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 4.805pt on input line 103.
+LaTeX Font Info:    Try loading font information for U+msa on input line 103.
+ (c:/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 103.
+ (c:/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
+(Font)              scaled to size 6.72699pt on input line 103.
+LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
+(Font)              scaled to size 4.805pt on input line 103.
+
+./report3.tex:103: Double subscript.
+l.103 ...nt Analysis)とは，学習データ$ x_i = (x_i_
+                                                  1,...,x_i_d ) $
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./report3.tex:103: Double subscript.
+l.103 ...s)とは，学習データ$ x_i = (x_i_1,...,x_i_
+                                                  d ) $
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+[1
+
+]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 124.
+ (c:/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 124.
+ [2] [3] [4] [5]
+File: AE_image.png Graphic file (type bmp)
+<AE_image.png>
+File: AE_image.png Graphic file (type bmp)
+<AE_image.png>
+ [6
+
+] [7]
+File: image/cyfer_ans.jpg Graphic file (type bmp)
+<image/cyfer_ans.jpg>
+File: image/cyfer_ans.jpg Graphic file (type bmp)
+<image/cyfer_ans.jpg>
+ [8] [9] (./report3.aux) ) 
+Here is how much of TeX's memory you used:
+ 3709 strings out of 493638
+ 52047 string characters out of 6151701
+ 152916 words of memory out of 5000000
+ 7259 multiletter control sequences out of 15000+600000
+ 17864 words of font info for 81 fonts, out of 8000000 for 9000
+ 934 hyphenation exceptions out of 8191
+ 42i,10n,40p,287b,447s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on report3.dvi (10 pages, 21764 bytes).

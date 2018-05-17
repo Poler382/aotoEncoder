@@ -1,0 +1,34 @@
+
+
+
+
+
+\begin{table}[h]
+\begin{center}
+\label{table:ccrpccrpaa}
+\caption{オートエンコーダーCCRPACCRPAAの構成}
+\begin{tabularx}{0.9\linewidth}{|l|l|X|}
+\hline
+1 & 畳み込み層 & 入力チャネル数:$3$，入力サイズ:$32 \times 32$，出力チャネル数:$10$，出力サイズ:$29 \times 29$，カーネルサイズ:$4 \times 4$ \\
+\hline
+2& 畳み込み層 & 入力チャネル数:$10$，入力サイズ:$29 \times 29$，出力チャネル数:$10$，出力サイズ:$26 \times 26$，カーネルサイズ:$4 \times 4$ \\
+\hline
+3 & 検出層 & ReLU \\
+\hline
+4 & プーリング層 & 入力サイズ:$26 \times 26$，出力サイズ:$13 \times 13$，ブロックサイズ:$2 \times 2$，集約演算:最大値 \\
+\hline
+5 & 畳み込み層 & 入力チャネル数:$10$，入力サイズ:$13 \times 13$，出力チャネル数:$10$，出力サイズ:$10 \times 10$，カーネルサイズ:$3 \times 3$ \\
+\hline
+6 & 畳み込み層 & 入力チャネル数:$10$，入力サイズ:$111 \times 11$，出力チャネル数:$10$，出力サイズ:$10 \times 10$，カーネルサイズ:$2 \times 2$ \\
+\hline
+7 & 検出層 & ReLU \\
+\hline
+8 & プーリング層 & 入力サイズ:$10 \times 10$，出力サイズ:$5 \times 5$，ブロックサイズ:$2 \times 2$，集約演算:最大値 \\
+\hline
+9 & Affine層 & 入力ノード数:$250$,出力ノード数:$  $ \\
+\hline
+10 & Affine層 & 入力ノード数:$250$，出力チャネル数:$3$, 出力ノード数:$ 32 \times 32 $ \\
+\hline
+\end{tabularx}
+\end{center}
+\end{table}
