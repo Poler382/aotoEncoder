@@ -1,8 +1,6 @@
 package auto
 
-import java.io.{FileOutputStream=>FileStream,OutputStreamWriter=>StreamWriter}
 import breeze.linalg._
-import math._
 
 object layer_util{
   def decoder_choice(mode2:String)={
@@ -56,7 +54,9 @@ object layer_util{
 
   def forwards(layers:List[Layer],x:Array[Double])={
     var temp = x
+
     for(lay <- layers){
+
       temp =lay.forward(temp)
     }
     temp

@@ -1,8 +1,5 @@
 package auto
-import breeze.linalg._
-import math._
-import scala.sys.process.Process
-import java.io.{FileOutputStream=>FileStream,OutputStreamWriter=>StreamWriter}
+import java.io.{FileOutputStream => FileStream, OutputStreamWriter => StreamWriter}
 
 object AE{
 
@@ -48,9 +45,9 @@ object AE{
 
   def load_cifer(dir:String) = {
     val (train_d,train_t) =
-      load_data(dir+"/train-d.txt",dir+"/train-t.txt")
+      load_data(dir+"/train1-d.txt",dir+"/train1-t.txt")
     val (test_d,test_t) =
-      load_data(dir+"/test-d.txt", dir+"/test-t.txt")
+      load_data(dir+"/test1-d.txt", dir+"/test1-t.txt")
 
     println("load finish")
 
@@ -67,16 +64,18 @@ object AE{
 
   def add_noise(x:Array[Double],flag:Int)={
     var ds = new Array[Double](x.size)
+
     for(i <- 0 until x.size){
       ds(i) = x(i)
     }
-    
+
     if(flag == 1){
       var stop = (rand.nextInt(3)+12) * 100
       for(i <- 0 until stop ){
         ds(rand.nextInt(32*32*3)) = 0
       }
     }
+
     ds
   }
 
@@ -116,16 +115,16 @@ object AE{
      */
 
   }
-  val e_mode = Array("AR","crpcrpa")
+  val e_mode = Array("AR")
   val d_mode = Array("A")
   val noize_mode = Array(0,1)
   def main(args:Array[String]){
     
     // データの読み込み
     ///home/share/cifar10
-    val (dtrain,dtest) = load_cifer("C:\Users\poler\Documents\python\share")
+     val (dtrain,dtest) = load_cifer("C:/Users/poler/Documents/python/share")
 
-    for (one <- e_mode;two <- d_mode;three <- noize_mode){
+    for (one <- e_mode; two <- d_mode; three <- noize_mode){
 
       val mode = one
       val mode2= two
@@ -145,8 +144,6 @@ object AE{
       val layers = Encoder ++ Decoder
       val c_layers= (c::(Encoder.reverse)).reverse
 
-      
-
       //aotoEncoder learning
       var num = 0
 
@@ -157,19 +154,22 @@ object AE{
       var AC_train  = List[Double]()
       var AC_test   = List[Double]()
 
-
+      val total_time = System.currentTimeMillis
       for ( i <- 0 until ln){
         num = 0
+
         var err1 = 0d; var err2 = 0d
         var start_l = System.currentTimeMillis
         var ys=List[Array[Double]]()
         for((x,n) <- dtrain.take(dn) ) {
           val xtemp = x
+
           var y = layer_util.forwards(layers,add_noise(xtemp,noise))
+
           layer_util.backwards(layers,sub(y,x))
 
           ys ::= y
-         
+
           if(rand.nextInt(10) == 1){//min-butch
             layer_util.updates(layers)
           }
@@ -208,7 +208,7 @@ object AE{
         var err1 = 0d
         var err2 = 0d
         var a_count = 0d
-        var dropnum = 1000
+        var dropnum = 100
         var start_a =System.currentTimeMillis
         for((x,n) <- dtrain.take(dropnum) ) {
           var y1 = layer_util.forwards(c_layers,add_noise(x,noise))
@@ -225,7 +225,7 @@ object AE{
 
         var c_count = 0d
         for((x,n) <- dtest.take(dropnum) ){
-          val yy = layer_util.forwards(c_layers,add_noise(x,noize))
+          val yy = layer_util.forwards(c_layers,add_noise(x,noise))
           err2 += sub(yy,x).map(a => a*a).sum
           if(argmax(yy) == n){ c_count+=1 }
 
@@ -239,6 +239,7 @@ object AE{
         AC_train ::= c_count/dropnum * 100
       }
 
+      println("\ntotal time: "+(System.currentTimeMillis-total_time)/1000d)
       plotdata("try1_"+line,line+"data1","Mean Square Error",MS_train1,MS_test1)
       plotdata("try2_"+line,line+"data2_1","Mean Square Error",MS_train2,MS_test2)
       plotdata("try3_"+line,line+"data2_2","Accuary Rate",AC_train,AC_test)

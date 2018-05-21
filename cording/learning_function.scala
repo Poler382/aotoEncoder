@@ -1,10 +1,5 @@
 package auto
 
-import breeze.linalg._
-import math._
-import scala.sys.process.Process
-import java.io.{FileOutputStream=>FileStream,OutputStreamWriter=>StreamWriter}
-
 
 
 object learning{
