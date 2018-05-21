@@ -66,7 +66,11 @@ object AE{
   }
 
   def add_noise(x:Array[Double],flag:Int)={
-    var ds = x
+    var ds = new Array[Double](x.size)
+    for(i <- 0 until x.size){
+      ds(i) = x(i)
+    }
+    
     if(flag == 1){
       var stop = (rand.nextInt(3)+12) * 100
       for(i <- 0 until stop ){
@@ -112,13 +116,14 @@ object AE{
      */
 
   }
-  val e_mode = Array("AR","ccrpccrpa","crpcrpa")
-  val d_mode = Array("A","RA")
+  val e_mode = Array("AR","crpcrpa")
+  val d_mode = Array("A")
   val noize_mode = Array(0,1)
   def main(args:Array[String]){
     
     // データの読み込み
-    val (dtrain,dtest) = load_cifer("/home/share/cifar10")
+    ///home/share/cifar10
+    val (dtrain,dtest) = load_cifer("C:\Users\poler\Documents\python\share")
 
     for (one <- e_mode;two <- d_mode;three <- noize_mode){
 
@@ -164,11 +169,11 @@ object AE{
           layer_util.backwards(layers,sub(y,x))
 
           ys ::= y
-          ys = ys.reverse 
+         
           if(rand.nextInt(10) == 1){//min-butch
             layer_util.updates(layers)
           }
-
+          ys = ys.reverse 
           err1 += sub(y,x).map(a => a*a).sum
         }
         if(i == ln-1 || i % 500 == 0){
@@ -183,9 +188,9 @@ object AE{
           val d = sub(y,x)
           err2 += sub(y,x).map(a => a*a).sum
           as ::= y
-          as = as.reverse
+          
         }
-       
+        as = as.reverse  
         if(i == ln-1 || i % 500 == 0){
           Image.write("test_ln"+i.toString+"_"+line+".png",Image.make_image2(as.toArray,10,10,32,32))
         }
@@ -220,7 +225,7 @@ object AE{
 
         var c_count = 0d
         for((x,n) <- dtest.take(dropnum) ){
-          val yy = layer_util.forwards(c_layers,add_noise(x,0))
+          val yy = layer_util.forwards(c_layers,add_noise(x,noize))
           err2 += sub(yy,x).map(a => a*a).sum
           if(argmax(yy) == n){ c_count+=1 }
 
@@ -234,9 +239,9 @@ object AE{
         AC_train ::= c_count/dropnum * 100
       }
 
-      plotdata("try1_"+line,line+" make","Mean Square Error",MS_train1,MS_test1)
-      plotdata("try2_"+line,line+" indentification","Mean Square Error",MS_train2,MS_test2)
-      plotdata("try3_"+line,line+" indentification","Accuary Rate",AC_train,AC_test)
+      plotdata("try1_"+line,line+"data1","Mean Square Error",MS_train1,MS_test1)
+      plotdata("try2_"+line,line+"data2_1","Mean Square Error",MS_train2,MS_test2)
+      plotdata("try3_"+line,line+"data2_2","Accuary Rate",AC_train,AC_test)
 
     }
 
