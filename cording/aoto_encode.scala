@@ -1,4 +1,4 @@
-package auto
+import breeze.linalg._
 import java.io.{FileOutputStream => FileStream, OutputStreamWriter => StreamWriter}
 
 object AE{
@@ -45,9 +45,9 @@ object AE{
 
   def load_cifer(dir:String) = {
     val (train_d,train_t) =
-      load_data(dir+"/train1-d.txt",dir+"/train1-t.txt")
+      load_data(dir+"/train-d.txt",dir+"/train-t.txt")
     val (test_d,test_t) =
-      load_data(dir+"/test1-d.txt", dir+"/test1-t.txt")
+      load_data(dir+"/test-d.txt", dir+"/test-t.txt")
 
     println("load finish")
 
@@ -65,11 +65,11 @@ object AE{
   def add_noise(x:Array[Double],flag:Int)={
     var ds = new Array[Double](x.size)
 
-    for(i <- 0 until x.size){
-      ds(i) = x(i)
-    }
-
     if(flag == 1){
+      for(i <- 0 until x.size){
+        ds(i) = x(i)
+      }
+
       var stop = (rand.nextInt(3)+12) * 100
       for(i <- 0 until stop ){
         ds(rand.nextInt(32*32*3)) = 0
@@ -122,7 +122,15 @@ object AE{
     
     // データの読み込み
     ///home/share/cifar10
-     val (dtrain,dtest) = load_cifer("C:/Users/poler/Documents/python/share")
+    
+    val (dtrain,dtest) = args(3) match{
+      case "home" => {
+        load_cifer("C:/Users/poler/Documents/python/share")
+      }
+      case "lab" => {
+        load_cifer("/home/share/cifar10")
+      }
+    }
 
     for (one <- e_mode; two <- d_mode; three <- noize_mode){
 
@@ -177,7 +185,7 @@ object AE{
           err1 += sub(y,x).map(a => a*a).sum
         }
         if(i == ln-1 || i % 500 == 0){
-          Image.write("train_ln"+i.toString+"_"+line+".png",Image.make_image2(ys.toArray,10,10,32,32))
+          Image.write("AE/train_ln"+i.toString+"_"+line+".png",Image.make_image2(ys.toArray,10,10,32,32))
         }
         num = 0
         var c_count = 0d
@@ -192,12 +200,12 @@ object AE{
         }
         as = as.reverse  
         if(i == ln-1 || i % 500 == 0){
-          Image.write("test_ln"+i.toString+"_"+line+".png",Image.make_image2(as.toArray,10,10,32,32))
+          Image.write("AE/test_ln"+i.toString+"_"+line+".png",Image.make_image2(as.toArray,10,10,32,32))
         }
         var time = System.currentTimeMillis - start_l
         MS_test1 ::= err2/tn
         MS_train1 ::= err1/dn
-        learning.print_result(i,time,err1/dn,err2/tn,0,0,0,0,dn,tn)
+        learning.print_result(i,time,List(err1/dn,err2/tn),0,0,dn,tn)
       }
 
 
@@ -232,7 +240,7 @@ object AE{
         }
 
         var time = System.currentTimeMillis - start_a
-        learning.print_result(i,time,err1/dn,err2/tn,0,0,a_count,c_count,dropnum,dropnum)
+        learning.print_result(i,time,List(err1/dn,err2/tn),a_count,c_count,dropnum,dropnum)
         MS_test2 ::= err2/tn
         MS_train2 ::= err1/dn
         AC_test ::= a_count/dropnum * 100
@@ -240,17 +248,11 @@ object AE{
       }
 
       println("\ntotal time: "+(System.currentTimeMillis-total_time)/1000d)
-      plotdata("try1_"+line,line+"data1","Mean Square Error",MS_train1,MS_test1)
-      plotdata("try2_"+line,line+"data2_1","Mean Square Error",MS_train2,MS_test2)
-      plotdata("try3_"+line,line+"data2_2","Accuary Rate",AC_train,AC_test)
+      plotdata("AE/try1_"+line,line+"data1","Mean Square Error",MS_train1,MS_test1)
+      plotdata("AE/try2_"+line,line+"data2_1","Mean Square Error",MS_train2,MS_test2)
+      plotdata("AE/try3_"+line,line+"data2_2","Accuary Rate",AC_train,AC_test)
 
     }
 
   }
-}
-abstract class Layer {
-  def forward(x:Array[Double]) : Array[Double]
-  def backward(x:Array[Double]) : Array[Double]
-  def update() : Unit
-  def reset() : Unit
 }
