@@ -10,10 +10,10 @@ object learning{
     countT:Double,
     dn:Int,
     tn:Int){
-    var printdata = "result:"+num.toString+"- time:"+time.toString+"\n"
+    var printdata = "result:"+num.toString+" - time:"+(time/1000d).toString+"\n"
 
     for(i <- 0 until errlist.size){
-      printdata += "err"+(i+1).toString+":"+(errlist(i)/1000d).toString+"/"
+      printdata += "err"+(i+1).toString+":"+errlist(i).toString+"/"
     }
 
     printdata += "\n"
