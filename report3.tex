@@ -7,9 +7,9 @@
 \usepackage{framed}
 \usepackage{tabularx}
 \usepackage{float}
-\usepackage{subcaption}
-\usepackage{afterpage}
-\graphicspath{{image/}}
+
+\graphicspath{{image/}{textfile/}{AE/}}
+
 \setlength{\topmargin}{-1in}
 \addtolength{\topmargin}{5mm}
 \setlength{\headheight}{5mm}
@@ -18,7 +18,7 @@
 \addtolength{\textheight}{-25mm}
 \setlength{\footskip}{5mm}
 
-\newcommand{\frontpage}[3]{%
+\newcommand{\frontpage}[3]{
 \begin{center}
 　\\
 \vspace{15em}{\LARGE{}レポート課題}\\
@@ -91,22 +91,24 @@ Auto Encoderには大きく分けて，エンコーダー部分とデコーダ�
 \\
 情報検索とは入力データから似た項目を検索するタスクである．
 入力から低次元のバイナリーを作成することで検索を効率化することが出来る．
-\\
+
 
 
 \subsubsection{学習を成功させるための条件}
-学習を成功させるために今回はミニバッチ法を用いる．
-ミニバッチ法とは正則化の方法のひとつで，学習時にデータをためてから一気に更新していく手法である．
-
+今回は実験を成功させるためにミニバッチ法をもちいた．
+ミニバッチ法とは各パラメータの補正をある程度データがたまったときに行う手法である．
 
 \subsubsection{主成分分析との関連}
-主成分分析(Principle Component Analysis)とは，学習データ$ x_i = (x_i_1,...,x_i_d ) $
+主成分分析(Principle Component Analysis)とは，
+学習データ
 の分散が最大になる方向への線形変換を求める手法である．
+
+
 
 
 \subsection{雑音除去自己符号化器（Denoising Autoencoder，DAE）}
 
-雑音除去自己符号化器は破損したデータ点を入力として受け取りもとの破損していないデータ点を復元するよう訓 練された自己複合化器である．
+雑音除去自己符号化器は破損したデータ点を入力として受け取りもとの破損していないデータ点を復元するよう訓練された自己複合化器である．
 以下にDAEの訓練手順を示す．
 \begin{enumerate}
   \item 入力データに一部ノイズを加えたデータをAEを行う
@@ -118,7 +120,23 @@ Auto Encoderには大きく分けて，エンコーダー部分とデコーダ�
 
 \section{実験方法}
 
-本実験にて確認したいことは以下の２つである。
+実験データとしてCIFAR10データセットを用い，以下の目的が達成されるような実験方法を検討し，その方法を説明せよ．
+
+\begin{itemize}
+\item 学習後の自己符号化器が入力画像を正しく生成できることを確認する．
+\item ネットワーク構成の違いによる生成画像の品質の差を確認する．畳み込み層を用いる場合とそうでない場合を比較せよ．
+\item 学習後の符号化器が入力画像の特徴を把握できていることを確認する．
+学習後の符号化器のパラメータを画像認識ネットワークの前段の初期値にした場合と，そうしない場合の正解率を比較せよ．
+\item 雑音除去自己符号化器が入力画像の雑音を除去できることを確認する．
+\end{itemize}
+
+以下に注意すること．
+\begin{itemize}
+\item 実験条件ごとに番号をつけ，確認したい項目および実験結果の再現に必要な条件（ネットワーク構成，目的関数，パラメータの初期化方法，パラメータの更新方法，学習回数，学習およびテストデータ数，入力に付加する雑音の比率など）を明記すること．
+\item テストデータで学習しないようにすること．
+\end{itemize}
+
+今回実験にて確認したいことは以下の２つである。
 
 \begin{itemize}
   \item 画像がきちんとデノイジングされるかどうか
@@ -139,9 +157,9 @@ Auto Encoderには大きく分けて，エンコーダー部分とデコーダ�
   \item ノイズの入れ方：画像の3割から5割をランダムで画素値を0にしてノイズとする
 \end{itemize}
 
-今回，実験で利用したネットワーク構成は以下のとおり．\\\\
 
-\begin{table}[ht]
+今回，実験で利用したネットワーク構成は以下のとおり．\\\\
+\begin{table}[bt]
 \begin{center}
 \caption{オートエンコーダーARAの構成}
 \label{table:AE:ARA}
@@ -157,27 +175,11 @@ Auto Encoderには大きく分けて，エンコーダー部分とデコーダ�
 \end{center}
 \end{table}
 
-\begin{table}[ht]
-\begin{center}
-\caption{オートエンコーダーARAAの構成}
-\label{table:AE:ARAA}
-\begin{tabularx}{0.9\linewidth}{|l|l|X|}
-\hline
-1 & アフィン層 & 入力チャネル数:$3$，入力サイズ:$32 \times 32$，出力チャネル数:$1$，出力サイズ:$1000 $ \\
-\hline
-2 & 検出層 & ReLU \\
-\hline
-3 & Affine層 & 入力ノード数:$500$， 出力ノード数:$ 512 $ \\
-\hline
-4 & Affine層 & 入力ノード数:$512$，出力チャネル数:$3$, 出力ノード数:$ 32 \times 32 $ \\
-\hline
-\end{tabularx}
-\end{center}
-\end{table}
 
-\begin{table}[ht]
+
+\begin{table}[bt]
 \begin{center}
-  \caption{オートエンコーダーCRPCRPAAの構成}
+\caption{オートエンコーダーcrpcrpaAの構成例}
 \label{table:CRPCRPAA}
 \begin{tabularx}{0.9\linewidth}{|l|l|X|}
 \hline
@@ -201,95 +203,6 @@ Auto Encoderには大きく分けて，エンコーダー部分とデコーダ�
 \end{center}
 \end{table}
 
-\begin{table}[ht]
-\begin{center}
-\caption{オートエンコーダーCRPCRPAAAの構成}
-\label{table:CRPCRPAAA}
-\begin{tabularx}{0.9\linewidth}{|l|l|X|}
-\hline
-1 & 畳み込み層 & 入力チャネル数:$3$，入力サイズ:$32 \times 32$，出力チャネル数:$10$，出力サイズ:$28 \times 28$，カーネルサイズ:$5 \times 5$ \\
-\hline
-2 & 検出層 & ReLU \\
-\hline
-3 & プーリング層 & 入力サイズ:$28 \times 28$，出力サイズ:$14 \times 14$，ブロックサイズ:$2 \times 2$，集約演算:最大値 \\
-\hline
-4 & 畳み込み層 & 入力チャネル数:$10$，入力サイズ:$14 \times 14$，出力チャネル数:$10$，出力サイズ:$10 \times 10$，カーネルサイズ:$5 \times 5$ \\
-\hline
-5 & 検出層 & ReLU \\
-\hline
-6 & プーリング層 & 入力サイズ:$10 \times 10$，出力サイズ:$5 \times 5$，ブロックサイズ:$2 \times 2$，集約演算:最大値 \\
-\hline
-7 & Affine層 & 入力ノード数:$250$，出力ノード数:$500$ \\
-\hline
-8 & Affine層 & 入力ノード数:$500$，出力ノード数:$512$ \\
-\hline
-9 & Affine層 & 入力ノード数:$512$，出力チャネル数:$3$,出力ノード数:$ 32 \times 32 $ \\
-\hline
-\end{tabularx}
-\end{center}
-\end{table}
-
-\begin{table}[ht]
-\begin{center}
-\label{table:CCRPACCRPAA}
-\caption{オートエンコーダーCCRPACCRPAAの構成}
-\begin{tabularx}{0.9\linewidth}{|l|l|X|}
-\hline
-1 & 畳み込み層 & 入力チャネル数:$3$，入力サイズ:$32 \times 32$，出力チャネル数:$10$，出力サイズ:$29 \times 29$，カーネルサイズ:$4 \times 4$ \\
-\hline
-2& 畳み込み層 & 入力チャネル数:$10$，入力サイズ:$29 \times 29$，出力チャネル数:$10$，出力サイズ:$26 \times 26$，カーネルサイズ:$4 \times 4$ \\
-\hline
-3 & 検出層 & ReLU \\
-\hline
-4 & プーリング層 & 入力サイズ:$26 \times 26$，出力サイズ:$13 \times 13$，ブロックサイズ:$2 \times 2$，集約演算:最大値 \\
-\hline
-5 & 畳み込み層 & 入力チャネル数:$10$，入力サイズ:$13 \times 13$，出力チャネル数:$10$，出力サイズ:$10 \times 10$，カーネルサイズ:$3 \times 3$ \\
-\hline
-6 & 畳み込み層 & 入力チャネル数:$10$，入力サイズ:$111 \times 11$，出力チャネル数:$10$，出力サイズ:$10 \times 10$，カーネルサイズ:$2 \times 2$ \\
-\hline
-7 & 検出層 & ReLU \\
-\hline
-8 & プーリング層 & 入力サイズ:$10 \times 10$，出力サイズ:$5 \times 5$，ブロックサイズ:$2 \times 2$，集約演算:最大値 \\
-\hline
-9 & Affine層 & 入力ノード数:$250$， 出力ノード数:$ 500 $ \\
-\hline
-10 & Affine層 & 入力ノード数:$500$，出力チャネル数:$3$, 出力ノード数:$ 32 \times 32 $ \\
-\hline
-\end{tabularx}
-\end{center}
-\end{table}
-
-\begin{table}[ht]
-\begin{center}
-\label{table:CCRPACCRPAAA}
-\caption{オートエンコーダーCCRPACCRPAAAの構成}
-\begin{tabularx}{0.9\linewidth}{|l|l|X|}
-\hline
-1 & 畳み込み層 & 入力チャネル数:$3$，入力サイズ:$32 \times 32$，出力チャネル数:$10$，出力サイズ:$29 \times 29$，カーネルサイズ:$4 \times 4$ \\
-\hline
-2& 畳み込み層 & 入力チャネル数:$10$，入力サイズ:$29 \times 29$，出力チャネル数:$10$，出力サイズ:$26 \times 26$，カーネルサイズ:$4 \times 4$ \\
-\hline
-3 & 検出層 & ReLU \\
-\hline
-4 & プーリング層 & 入力サイズ:$26 \times 26$，出力サイズ:$13 \times 13$，ブロックサイズ:$2 \times 2$，集約演算:最大値 \\
-\hline
-5 & 畳み込み層 & 入力チャネル数:$10$，入力サイズ:$13 \times 13$，出力チャネル数:$10$，出力サイズ:$10 \times 10$，カーネルサイズ:$3 \times 3$ \\
-\hline
-6 & 畳み込み層 & 入力チャネル数:$10$，入力サイズ:$111 \times 11$，出力チャネル数:$10$，出力サイズ:$10 \times 10$，カーネルサイズ:$2 \times 2$ \\
-\hline
-7 & 検出層 & ReLU \\
-\hline
-8 & プーリング層 & 入力サイズ:$10 \times 10$，出力サイズ:$5 \times 5$，ブロックサイズ:$2 \times 2$，集約演算:最大値 \\
-\hline
-9 & Affine層 & 入力ノード数:$250$， 出力ノード数:$ 500 $ \\
-\hline
-10 & Affine層 & 入力ノード数:$500$， 出力ノード数:$ 512 $ \\
-\hline
-11 & Affine層 & 入力ノード数:$512$，出力チャネル数:$3$, 出力ノード数:$ 32 \times 32 $ \\
-\hline
-\end{tabularx}
-\end{center}
-\end{table}
 
 
 \clearpage
@@ -298,79 +211,161 @@ Auto Encoderには大きく分けて，エンコーダー部分とデコーダ�
 
 以下のような結果が得られた．
 
-・AE
+\begin{figure}[h]
+  \begin{center}
+    \begin{tabular}{c}
+
+      % 1
+      \begin{minipage}{0.33\hsize}
+        \begin{center}
+          \includegraphics[clip, width=\linewidth]{cyfer_ans.jpg}
+          \hspace{0.2cm} 学習データ
+        \end{center}
+      \end{minipage}
+
+      % 2
+      \begin{minipage}{0.33\hsize}
+        \begin{center}
+          \includegraphics[clip, width=\linewidth]{train_ln499_mode_ARA_ln_500-dn_100_tn_100_noise_0.png}
+          \hspace{0.2cm} ARA:ノイズなし
+        \end{center}
+      \end{minipage}
+
+      % 3
+      \begin{minipage}{0.33\hsize}
+        \begin{center}
+          \includegraphics[clip, width=\linewidth]{train_ln250_mode_ARA_ln_300-dn_100_tn_100_noise_1.png}
+          \hspace{0.2cm} ARA:ノイズあり
+        \end{center}
+      \end{minipage}
+
+
+    \end{tabular}
+    \caption{生成画像}
+     \label{fig:accuracy}
+  \end{center}
+\end{figure}
+
 
 \begin{figure}[h]
   \begin{center}
     \begin{tabular}{c}
 
       % 1
-      \begin{minipage}{0.43\hsize}
+      \begin{minipage}{0.33\hsize}
         \begin{center}
-          \includegraphics[clip, width=\linewidth]{AE_image.png}
-          \hspace{0.2cm} [1]正解率（実験1)
+          \includegraphics[clip, width=\linewidth]{cyfer_ans.jpg}
+          \hspace{0.2cm} 学習データ
         \end{center}
       \end{minipage}
 
       % 2
-      \begin{minipage}{0.43\hsize}
+      \begin{minipage}{0.33\hsize}
         \begin{center}
-          \includegraphics[clip, width=\linewidth]{AE_image.png}
-          \hspace{0.2cm} [2]平均二乗誤差（実験1)
+          \includegraphics[clip, width=\linewidth]{train_ln499_mode_crpcrpaA_ln_500-dn_100_tn_100_noise_0.png}
+          \hspace{0.2cm} crpcrpaA:ノイズなし
+        \end{center}
+      \end{minipage}
+
+      % 3
+      \begin{minipage}{0.33\hsize}
+        \begin{center}
+          \includegraphics[clip, width=\linewidth]{train_ln250_mode_crpcrpaA_ln_300-dn_100_tn_100_noise_1.png}
+          \hspace{0.2cm} crpcrpaA:ノイズあり
         \end{center}
       \end{minipage}
 
 
     \end{tabular}
-    \caption{CNN(Adamで更新)}
+    \caption{生成画像}
      \label{fig:accuracy}
   \end{center}
 \end{figure}
-・DAE
 
 
-・画像分類
+\clearpage
+\begin{figure}[h]
+  \begin{center}
+    \begin{tabular}{c}
+
+      % 1
+      \begin{minipage}{0.5\hsize}
+        \begin{center}
+          \includegraphics[clip, width=\linewidth]{MSE_ARA_ノイズなし.png}
+          \hspace{0.2cm} ARA:平均二乗誤差
+        \end{center}
+      \end{minipage}
+
+      % 2
+      \begin{minipage}{0.5\hsize}
+        \begin{center}
+          \includegraphics[clip, width=\linewidth]{MSE_crpcrpaA_noise_0.png}
+          \hspace{0.2cm} CRPCRPAA:平均二乗誤差
+        \end{center}
+      \end{minipage}
+
+    \end{tabular}
+    \caption{平均二乗誤差}
+
+  \end{center}
+\end{figure}
 
 
+\begin{figure}[h]
+  \begin{center}
+    \begin{tabular}{c}
 
+      % 1
+      \begin{minipage}{0.5\hsize}
+        \begin{center}
+          \includegraphics[clip, width=\linewidth]{AR_ARA_noise_1.png}
+          \hspace{0.2cm} ARA:正解率
+        \end{center}
+      \end{minipage}
+      % 2
+      \begin{minipage}{0.5\hsize}
+        \begin{center}
+          \includegraphics[clip, width=\linewidth]{AR_crpcrpaA_noise_0.png}
+          \hspace{0.2cm} CRPCRPAA：正解率
+        \end{center}
+      \end{minipage}
 
-\section{考察}
+    \end{tabular}
+    \caption{正解率}
 
-今回、自己符号化器を作成し、それを用いた画像識別を行った。
-さまざまな構成で試したが、（）が最も良い結果を生んだ。
-ARA、CRPCRPAともに学習回数を重ねるとノイズなしでは高い再現性を実現した。しかしながらその学習にはとても時間がかかる。
-また自己符号化器を使った事前学習での画像識別は前回やったMNISTデータで学習する時よりも初期の正解率が高く、平均二乗誤差も低い数値から始まり、結果として早く終息する傾向があるように思う。これは自己符号化で早くからパラメータの数値が良い値を示し、収束の加速につながったと思う。
-しかし同じ構成のネットワークで学習をしてみるとノイズなしの方がより良い結果を示しているように思う。
-これはノイズをつけた方がノイズにフィットするように学習が進むためだと思われる。
-
-デノイジングに関してはこちらも学習回数というよりネットワーク構成が大きく影響することがわかる。
-雑音除去はないものを周りのものを使って構成するという機能なのでかけてしまった歴史的な壁画や、これを文章に置き換え穴あき問題を解かせるなどに使えそうだなと作成しながら構想した。
-
-今回はエンコーダーには畳み込み層を用いているが、デコーダ部分には畳み込みを持ちいらずアフィン層で拡張した
-この構成が結果にどのような影響をあたえているかわからないのでdeconvolutionを用いた実装をしてみたいと思う。
-
-コーディングしていく中でうまくネットワークを作るにはトライアンドエラーが必要不可けつだと感じた。
-おそらく元とする学習データでもその構成は変わると思われる。
-なのでコツは改変しやすいようクラスやオブジェクトで各モジュールをパッケージ化していくことだと思われる。
-より柔軟性の高いコーディングを目指していきたい。
+  \end{center}
+\end{figure}
 
 
 
 
 \clearpage
 
-\begin{figure}[tb]
-\begin{center}
-\includegraphics[width=\linewidth]{cyfer_ans.jpg}
-\caption{学習データ} \label{fig:ae1}
-\end{center}
-\end{figure}
 
-\begin{figure}[tb]
-\begin{center}
-\includegraphics[width=\linewidth]{cyfer_ans.jpg}
-\caption{学習データの復号結果（実験条件との対応がとれるようにすること）: 学習回数=200回．平均二乗誤差=7.1715} \label{fig:ae}
-\end{center}
-\end{figure}
+\section{考察}
+
+今回、自己符号化器を作成し、それを用いた画像識別を行った。
+さまざまな構成で試したが、ARAが最も良い結果を生んだ。
+ARA、CRPCRPAともに学習回数を重ねるとノイズなしでは高い再現性を実現した。しかしながらその学習にはとても時間がかかる。
+また自己符号化器を使った事前学習での画像識別は前回やったMNISTデータで学習する時よりも初期の正解率が高く、
+平均二乗誤差も低い数値から始まり、結果として早く収束する傾向があるように思う．
+これは自己符号化で早くからパラメータの数値が良い値を示し、収束の加速につながったと思う．
+しかし同じ構成のネットワークで学習をしてみるとノイズなしの方がより良い結果を示しているように思う．
+これはノイズをつけた方がノイズにフィットするように学習が進むためだと思われる．
+\\
+デノイジングに関してはこちらも学習回数というよりネットワーク構成が大きく影響することがわかる．
+雑音除去はないものを周りのものを使って構成するという機能なのでかけてしまった歴史的な壁画や、
+これを文章に置き換え穴あき問題を解かせるなどに使えそうだなと作成しながら考えていた。
+
+今回はエンコーダーには畳み込み層を用いているが、デコーダ部分には畳み込みを持ちいらずアフィン層で復号した
+この構成が結果にどのような影響をあたえているかわからないのでdeconvolutionを用いた実装をしてみたいと思う．
+
+コーディングしていく中でうまくネットワークを作るにはトライアンドエラーが必要不可欠だと感じた．
+おそらく元とする学習データでもその構成は変わると思われる．
+なのでコツは改変しやすいようクラスやオブジェクトで各モジュールをパッケージ化していくことだと思われる．
+より柔軟性の高いコーディングを目指していきたい．
+
+
+
 
 \end{document}
